@@ -1,15 +1,21 @@
 'use strict';
-function fib(n){
-    if (n === 0){
-        return 0 ;
-    }
-    else if(n === 1){
-        return 1 ;
-    } 
-    return fib(n-1) + fib (n-2) ;
-} ;
 
-const length = 40 ;
-for (let i = 0 ; i < length ; i++){
-    console.log ( fib(i) ) ;
+const culcuMap = new Map() ;
+
+culcuMap.set(0, 0) ;
+
+culcuMap.set(1, 1) ;
+
+function sumMap(n){
+    if( culcuMap.has(n) ){
+        return culcuMap.get(n) ;
+    }
+    const value = sumMap(n-1) + sumMap(n-2) ;
+    culcuMap.set(n , value) ;
+    return culcuMap.get(n) ;
+};
+
+const length = 40
+for(let i = 0; i <= length ; i++ ){
+    console.log( sumMap(i) );
 };
